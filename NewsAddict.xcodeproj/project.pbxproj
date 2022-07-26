@@ -15,6 +15,9 @@
 		FF4D2E3E28904707000B932B /* NewsAddictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E3D28904707000B932B /* NewsAddictTests.swift */; };
 		FF4D2E4828904707000B932B /* NewsAddictUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E4728904707000B932B /* NewsAddictUITests.swift */; };
 		FF4D2E4A28904707000B932B /* NewsAddictUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E4928904707000B932B /* NewsAddictUITestsLaunchTests.swift */; };
+		FF4D2E5A289048FE000B932B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E59289048FE000B932B /* AppConstants.swift */; };
+		FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */; };
+		FF4D2E5F289049B0000B932B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		FF4D2E4328904707000B932B /* NewsAddictUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAddictUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4D2E4728904707000B932B /* NewsAddictUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAddictUITests.swift; sourceTree = "<group>"; };
 		FF4D2E4928904707000B932B /* NewsAddictUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAddictUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FF4D2E59289048FE000B932B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extensions.swift"; sourceTree = "<group>"; };
+		FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +103,10 @@
 		FF4D2E2528904705000B932B /* NewsAddict */ = {
 			isa = PBXGroup;
 			children = (
-				FF4D2E2628904705000B932B /* AppDelegate.swift */,
-				FF4D2E2828904705000B932B /* SceneDelegate.swift */,
+				FF4D2E5B2890497B000B932B /* Extensions */,
+				FF4D2E58289048EF000B932B /* Helper */,
+				FF4D2E57289048CE000B932B /* Config */,
+				FF4D2E56289048C9000B932B /* Modules */,
 				FF4D2E2A28904705000B932B /* ViewController.swift */,
 				FF4D2E2F28904707000B932B /* Assets.xcassets */,
 				FF4D2E3128904707000B932B /* LaunchScreen.storyboard */,
@@ -122,6 +130,39 @@
 				FF4D2E4928904707000B932B /* NewsAddictUITestsLaunchTests.swift */,
 			);
 			path = NewsAddictUITests;
+			sourceTree = "<group>";
+		};
+		FF4D2E56289048C9000B932B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FF4D2E57289048CE000B932B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E2828904705000B932B /* SceneDelegate.swift */,
+				FF4D2E2628904705000B932B /* AppDelegate.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		FF4D2E58289048EF000B932B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E59289048FE000B932B /* AppConstants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FF4D2E5B2890497B000B932B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */,
+				FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4D2E5F289049B0000B932B /* UIView+Extensions.swift in Sources */,
+				FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */,
 				FF4D2E2B28904705000B932B /* ViewController.swift in Sources */,
 				FF4D2E2728904705000B932B /* AppDelegate.swift in Sources */,
 				FF4D2E2928904705000B932B /* SceneDelegate.swift in Sources */,
+				FF4D2E5A289048FE000B932B /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
