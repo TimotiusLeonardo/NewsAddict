@@ -18,6 +18,12 @@
 		FF4D2E5A289048FE000B932B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E59289048FE000B932B /* AppConstants.swift */; };
 		FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */; };
 		FF4D2E5F289049B0000B932B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */; };
+		FF4D2E6228904AB7000B932B /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6128904AB7000B932B /* CategoriesViewController.swift */; };
+		FF4D2E6428904AFD000B932B /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6328904AFD000B932B /* CategoriesPresenter.swift */; };
+		FF4D2E6628904B0C000B932B /* CategoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6528904B0C000B932B /* CategoriesRouter.swift */; };
+		FF4D2E6828904B1D000B932B /* CategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6728904B1D000B932B /* CategoriesInteractor.swift */; };
+		FF4D2E6A28904B5E000B932B /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6928904B5E000B932B /* CategoriesModel.swift */; };
+		FF4D2E6E28905A8B000B932B /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E6D28905A8B000B932B /* DefaultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,12 @@
 		FF4D2E59289048FE000B932B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extensions.swift"; sourceTree = "<group>"; };
 		FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		FF4D2E6128904AB7000B932B /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		FF4D2E6328904AFD000B932B /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
+		FF4D2E6528904B0C000B932B /* CategoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRouter.swift; sourceTree = "<group>"; };
+		FF4D2E6728904B1D000B932B /* CategoriesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesInteractor.swift; sourceTree = "<group>"; };
+		FF4D2E6928904B5E000B932B /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		FF4D2E6D28905A8B000B932B /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +115,7 @@
 		FF4D2E2528904705000B932B /* NewsAddict */ = {
 			isa = PBXGroup;
 			children = (
+				FF4D2E6B28905843000B932B /* Custom View */,
 				FF4D2E5B2890497B000B932B /* Extensions */,
 				FF4D2E58289048EF000B932B /* Helper */,
 				FF4D2E57289048CE000B932B /* Config */,
@@ -135,6 +148,7 @@
 		FF4D2E56289048C9000B932B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FF4D2E6028904A97000B932B /* Categories */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -163,6 +177,26 @@
 				FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FF4D2E6028904A97000B932B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E6128904AB7000B932B /* CategoriesViewController.swift */,
+				FF4D2E6328904AFD000B932B /* CategoriesPresenter.swift */,
+				FF4D2E6528904B0C000B932B /* CategoriesRouter.swift */,
+				FF4D2E6728904B1D000B932B /* CategoriesInteractor.swift */,
+				FF4D2E6928904B5E000B932B /* CategoriesModel.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FF4D2E6B28905843000B932B /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E6D28905A8B000B932B /* DefaultTableViewCell.swift */,
+			);
+			path = "Custom View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,10 +330,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF4D2E5F289049B0000B932B /* UIView+Extensions.swift in Sources */,
+				FF4D2E6E28905A8B000B932B /* DefaultTableViewCell.swift in Sources */,
 				FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */,
+				FF4D2E6628904B0C000B932B /* CategoriesRouter.swift in Sources */,
+				FF4D2E6428904AFD000B932B /* CategoriesPresenter.swift in Sources */,
+				FF4D2E6828904B1D000B932B /* CategoriesInteractor.swift in Sources */,
 				FF4D2E2B28904705000B932B /* ViewController.swift in Sources */,
 				FF4D2E2728904705000B932B /* AppDelegate.swift in Sources */,
 				FF4D2E2928904705000B932B /* SceneDelegate.swift in Sources */,
+				FF4D2E6228904AB7000B932B /* CategoriesViewController.swift in Sources */,
+				FF4D2E6A28904B5E000B932B /* CategoriesModel.swift in Sources */,
 				FF4D2E5A289048FE000B932B /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
