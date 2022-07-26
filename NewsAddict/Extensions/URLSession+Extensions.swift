@@ -24,6 +24,7 @@ extension URLSession {
         newUrl.queryItems = params.map { (key, value) in
             URLQueryItem(name: key, value: value)
         }
+        newUrl.queryItems?.append(URLQueryItem(name: "apiKey", value: API_KEY))
         newUrl.percentEncodedQuery = newUrl.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
         
         guard let request = newUrl.url else {

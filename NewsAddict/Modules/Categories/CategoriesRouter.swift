@@ -5,10 +5,10 @@
 //  Created by Timotius Leonardo Lianoto on 26/07/22.
 //
 
-import Foundation
+import UIKit
 
 protocol CategoriesRouterDelegate: AnyObject {
-    //
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController)
 }
 
 class CategoriesRouter: CategoriesRouterDelegate {
@@ -25,5 +25,9 @@ class CategoriesRouter: CategoriesRouterDelegate {
         interactor.presenter = presenter
         
         return view
+    }
+    
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController) {
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
