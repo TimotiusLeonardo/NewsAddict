@@ -116,7 +116,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
             isFullLoaded = false
         }
         // if already at bottom page, make loading cell dissapear
-        if data?.articles.isEmpty == true {
+        if data?.articles.isEmpty == true || data == nil {
             isFullLoaded = true
         }
         

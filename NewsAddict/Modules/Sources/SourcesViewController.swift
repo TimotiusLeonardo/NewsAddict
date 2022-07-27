@@ -74,7 +74,7 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
                                  padding: .init(top: 0, left: 24, bottom: 0, right: 0),
                                  size: .init(width: 24, height: 24))
         backChevronButton.centerYAnchor.constraint(equalTo: pageTitleLabel.centerYAnchor).isActive = true
-        
+        navigationController?.isToolbarHidden = true
         view.backgroundColor = .white
     }
     

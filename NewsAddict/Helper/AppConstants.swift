@@ -7,7 +7,7 @@
 
 import Foundation
 
-let API_KEY = "1842e3fcc70342bf8af5cfbee8968c05"
+let API_KEY = "445a37136cae4eb7ad79b110f9e3a527"
 let BASE_URL = "https://newsapi.org/v2/"
 
 

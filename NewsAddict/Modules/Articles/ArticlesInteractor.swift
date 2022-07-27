@@ -18,8 +18,10 @@ class ArticlesInteractor: ArticlesInteractorDelegate {
         let url = URLComponents(string: "\(BASE_URL)\(ARTICLES_EVERYTHING_ENDPOINT)")
         let params: [String: String] = [
             "sources": source,
-            "page": "\(page)"
+            "page": "\(page)",
+            "pageSize": "20"
         ]
+        print(params)
         URLSession.shared.request(url: url, expecting: ArticlesModel.self, params: params) { [weak self] result in
             switch result {
             case .success(let articlesData):
@@ -29,6 +31,10 @@ class ArticlesInteractor: ArticlesInteractorDelegate {
                 }
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {
+                    print("Success Getting Data")
+                    self?.presenter?.didGetArticlesData(data: nil)
+                }
             }
         }
     }
