@@ -53,6 +53,13 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         return label
     }()
     
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search Articles"
+        searchBar.delegate = self
+        return searchBar
+    }()
+    
     // MARK: - Variables
     var presenter: ArticlesViewToPresenterDelegate?
     var articles: ArticlesModel?
@@ -64,7 +71,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        presenter?.getArticlesData()
+        presenter?.getArticlesData(withKeyword: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -74,13 +81,20 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         view.addSubview(pageTitleLabel)
         view.addSubview(backChevronButton)
         view.addSubview(emptyTitle)
+        view.addSubview(searchBar)
         pageTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                               leading: view.leadingAnchor,
                               bottom: nil,
                               trailing: view.trailingAnchor,
                               padding: .zero,
                               size: .init(width: 0, height: 80))
-        sourcesTableView.anchor(top: pageTitleLabel.bottomAnchor,
+        searchBar.anchor(top: pageTitleLabel.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: nil,
+                         trailing: view.trailingAnchor,
+                         padding: .zero,
+                         size: .init(width: 0, height: 60))
+        sourcesTableView.anchor(top: searchBar.bottomAnchor,
                                  leading: view.leadingAnchor,
                                  bottom: view.bottomAnchor,
                                  trailing: view.trailingAnchor,
@@ -134,6 +148,21 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         }
     }
     
+    func refreshData() {
+        articles = nil
+        sourcesTableView.reloadData()
+        
+        if emptyTitle.alpha == 1 {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           options: .curveEaseInOut,
+                           animations: {
+                self.emptyTitle.alpha = 0
+            },
+                           completion: nil)
+        }
+    }
+    
     @objc func didBackButtonClicked() {
         presenter?.dismiss()
     }
@@ -163,7 +192,7 @@ extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         print("Display Loading Cell")
-        presenter?.getArticlesData()
+        presenter?.getArticlesData(withKeyword: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -192,5 +221,13 @@ extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
         case .contentCell:
             presenter?.goToDetailArticlePage(article: articles?.articles[indexPath.row])
         }
+    }
+}
+
+extension ArticlesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        refreshData()
+        presenter?.getArticlesData(withKeyword: searchBar.text)
     }
 }

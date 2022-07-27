@@ -8,18 +8,19 @@
 import Foundation
 
 protocol ArticlesInteractorDelegate: AnyObject {
-    func getArticlesData(source: String, page: Int)
+    func getArticlesData(source: String, page: Int, withKeyword: String)
 }
 
 class ArticlesInteractor: ArticlesInteractorDelegate {
     var presenter: ArticlesInteractorToPresenterDelegate?
     
-    func getArticlesData(source: String, page: Int) {
+    func getArticlesData(source: String, page: Int, withKeyword: String) {
         let url = URLComponents(string: "\(BASE_URL)\(ARTICLES_EVERYTHING_ENDPOINT)")
         let params: [String: String] = [
             "sources": source,
             "page": "\(page)",
-            "pageSize": "20"
+            "pageSize": "20",
+            "q": withKeyword
         ]
         print(params)
         URLSession.shared.request(url: url, expecting: ArticlesModel.self, params: params) { [weak self] result in

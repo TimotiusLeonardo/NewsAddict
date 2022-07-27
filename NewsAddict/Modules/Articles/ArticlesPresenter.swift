@@ -10,8 +10,9 @@ import UIKit
 
 protocol ArticlesViewToPresenterDelegate: AnyObject {
     func goToDetailArticlePage(article: ArticlesDetail?)
-    func getArticlesData()
+    func getArticlesData(withKeyword: String?)
     func dismiss()
+    func refreshData()
 }
 
 protocol ArticlesInteractorToPresenterDelegate: AnyObject {
@@ -25,9 +26,19 @@ class ArticlesPresenter: ArticlesViewToPresenterDelegate, ArticlesInteractorToPr
     
     var page = 1
     var sourcesId: String = ""
+    var withKeyword: String = ""
     
-    func getArticlesData() {
-        interactor?.getArticlesData(source: sourcesId, page: page)
+    func getArticlesData(withKeyword: String?) {
+        if let withKeyword = withKeyword {
+            self.withKeyword = withKeyword
+            page = 1
+        }
+        
+        interactor?.getArticlesData(source: sourcesId, page: page, withKeyword: self.withKeyword)
+    }
+    
+    func refreshData() {
+        page = 1
     }
     
     func didGetArticlesData(data: ArticlesModel?) {
