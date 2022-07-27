@@ -23,14 +23,16 @@ class ArticlesPresenter: ArticlesViewToPresenterDelegate, ArticlesInteractorToPr
     var router: ArticlesRouterDelegate?
     var interactor: ArticlesInteractorDelegate?
     
+    var page = 1
     var sourcesId: String = ""
     
     func getArticlesData() {
-        interactor?.getArticlesData(source: sourcesId)
+        interactor?.getArticlesData(source: sourcesId, page: page)
     }
     
     func didGetArticlesData(data: ArticlesModel?) {
         view?.didGetArticlesData(data: data)
+        page += 1
     }
     
     func dismiss() {

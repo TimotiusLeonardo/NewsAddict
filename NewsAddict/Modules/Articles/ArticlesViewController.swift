@@ -13,6 +13,11 @@ protocol ArticlesViewDelegate: AnyObject {
 
 class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     
+    enum TableViewSection {
+        case loadingBar
+        case contentCell
+    }
+    
     // MARK: - View Components
     lazy var sourcesTableView: UITableView = {
         let tableView = UITableView()
@@ -51,6 +56,10 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     // MARK: - Variables
     var presenter: ArticlesViewToPresenterDelegate?
     var articles: ArticlesModel?
+    var sections: [TableViewSection] = [
+        .contentCell, .loadingBar
+    ]
+    var isFullLoaded: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +87,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
                                  padding: .zero,
                                  size: .zero)
         sourcesTableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: "Cell")
+        sourcesTableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: "LoadingCell")
         backChevronButton.anchor(top: nil,
                                  leading: view.leadingAnchor,
                                  bottom: nil,
@@ -98,8 +108,21 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     }
     
     func didGetArticlesData(data: ArticlesModel?) {
-        articles = data
+        if articles == nil {
+            articles = data
+            isFullLoaded = false
+        } else {
+            articles?.articles.append(contentsOf: data?.articles ?? [])
+            isFullLoaded = false
+        }
+        // if already at bottom page, make loading cell dissapear
+        if data?.articles.isEmpty == true {
+            isFullLoaded = true
+        }
+        
         sourcesTableView.reloadData()
+        
+        // If list empty, show empty label
         if articles?.articles.isEmpty == true {
             UIView.animate(withDuration: 0.5,
                            delay: 0,
@@ -118,25 +141,56 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
 }
 
 extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let model = articles else {
-            return 0
+        switch sections[section] {
+        case .loadingBar:
+            return isFullLoaded ? 0 : 1
+        case .contentCell:
+            guard let model = articles else {
+                return 0
+            }
+            
+            return model.articles.count
         }
-        
-        return model.articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let _ = cell as? LoadingTableViewCell, indexPath.section == 1, indexPath.row == 0 else {
+            return
+        }
+        print("Display Loading Cell")
+        presenter?.getArticlesData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? DefaultTableViewCell else {
-            return UITableViewCell()
+        switch sections[indexPath.section] {
+        case .loadingBar:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.loadingView.startAnimating()
+            return cell
+        case .contentCell:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? DefaultTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(text: articles?.articles[indexPath.row].title ?? "No Title",
+                           subtitle: articles?.articles[indexPath.row].author ?? "No Author")
+            return cell
         }
-        cell.configure(text: articles?.articles[indexPath.row].title ?? "No Title",
-                       subtitle: articles?.articles[indexPath.row].author ?? "No Author")
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.goToDetailArticlePage(article: articles?.articles[indexPath.row])
+        switch sections[indexPath.section] {
+        case .loadingBar:
+            print("Nothing To do")
+        case .contentCell:
+            presenter?.goToDetailArticlePage(article: articles?.articles[indexPath.row])
+        }
     }
 }

@@ -39,6 +39,7 @@
 		FF4D2E902890CB0F000B932B /* DetailArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8B2890CA31000B932B /* DetailArticleModel.swift */; };
 		FF4D2E912890CB12000B932B /* DetailArticleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */; };
 		FF4D2E922890CB15000B932B /* DetailArticleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8A2890CA31000B932B /* DetailArticleRouter.swift */; };
+		FF4D2E942890DE91000B932B /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E932890DE91000B932B /* LoadingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		FF4D2E8B2890CA31000B932B /* DetailArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleModel.swift; sourceTree = "<group>"; };
 		FF4D2E8C2890CA31000B932B /* DetailArticlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticlePresenter.swift; sourceTree = "<group>"; };
 		FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleInteractor.swift; sourceTree = "<group>"; };
+		FF4D2E932890DE91000B932B /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				FF4D2E6D28905A8B000B932B /* DefaultTableViewCell.swift */,
+				FF4D2E932890DE91000B932B /* LoadingTableViewCell.swift */,
 			);
 			path = "Custom View";
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */,
 				FF4D2E862890C03D000B932B /* ArticlesInteractor.swift in Sources */,
 				FF4D2E6628904B0C000B932B /* CategoriesRouter.swift in Sources */,
+				FF4D2E942890DE91000B932B /* LoadingTableViewCell.swift in Sources */,
 				FF4D2E872890C03F000B932B /* ArticlesModel.swift in Sources */,
 				FF4D2E852890C03A000B932B /* ArticlesRouter.swift in Sources */,
 				FF4D2E7528905C35000B932B /* SourcesViewController.swift in Sources */,
