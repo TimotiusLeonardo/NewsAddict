@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol ArticlesViewToPresenterDelegate: AnyObject {
+    func goToDetailArticlePage(article: ArticlesDetail?)
     func getArticlesData()
     func dismiss()
 }
@@ -34,5 +35,10 @@ class ArticlesPresenter: ArticlesViewToPresenterDelegate, ArticlesInteractorToPr
     
     func dismiss() {
         router?.dismiss(viewController: view as? UIViewController)
+    }
+    
+    func goToDetailArticlePage(article: ArticlesDetail?) {
+        let detailVC = DetailArticleRouter.createModule(article: article)
+        router?.goToNextViewController(viewController: view as? UIViewController, nextViewController: detailVC)
     }
 }

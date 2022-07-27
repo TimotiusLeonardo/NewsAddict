@@ -10,6 +10,7 @@ import UIKit
 
 protocol ArticlesRouterDelegate: AnyObject {
     func dismiss(viewController: UIViewController?)
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController)
 }
 
 class ArticlesRouter: ArticlesRouterDelegate {
@@ -31,5 +32,9 @@ class ArticlesRouter: ArticlesRouterDelegate {
     
     func dismiss(viewController: UIViewController?) {
         viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController) {
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }

@@ -23,7 +23,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     
     lazy var pageTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sources"
+        label.text = "Articles"
         label.textColor = .black
         label.backgroundColor = .white
         label.textAlignment = .center
@@ -137,5 +137,6 @@ extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.goToDetailArticlePage(article: articles?.articles[indexPath.row])
     }
 }

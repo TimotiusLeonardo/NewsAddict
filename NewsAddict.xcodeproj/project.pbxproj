@@ -34,6 +34,11 @@
 		FF4D2E852890C03A000B932B /* ArticlesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E812890C030000B932B /* ArticlesRouter.swift */; };
 		FF4D2E862890C03D000B932B /* ArticlesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E802890C030000B932B /* ArticlesInteractor.swift */; };
 		FF4D2E872890C03F000B932B /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E7E2890C030000B932B /* ArticlesModel.swift */; };
+		FF4D2E8E2890CAD0000B932B /* DetailArticlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8C2890CA31000B932B /* DetailArticlePresenter.swift */; };
+		FF4D2E8F2890CB02000B932B /* DetailArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E892890CA31000B932B /* DetailArticleViewController.swift */; };
+		FF4D2E902890CB0F000B932B /* DetailArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8B2890CA31000B932B /* DetailArticleModel.swift */; };
+		FF4D2E912890CB12000B932B /* DetailArticleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */; };
+		FF4D2E922890CB15000B932B /* DetailArticleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8A2890CA31000B932B /* DetailArticleRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +90,11 @@
 		FF4D2E802890C030000B932B /* ArticlesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesInteractor.swift; sourceTree = "<group>"; };
 		FF4D2E812890C030000B932B /* ArticlesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesRouter.swift; sourceTree = "<group>"; };
 		FF4D2E822890C030000B932B /* ArticlesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesPresenter.swift; sourceTree = "<group>"; };
+		FF4D2E892890CA31000B932B /* DetailArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailArticleV\U0010iewController.swift"; sourceTree = "<group>"; };
+		FF4D2E8A2890CA31000B932B /* DetailArticleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleRouter.swift; sourceTree = "<group>"; };
+		FF4D2E8B2890CA31000B932B /* DetailArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleModel.swift; sourceTree = "<group>"; };
+		FF4D2E8C2890CA31000B932B /* DetailArticlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticlePresenter.swift; sourceTree = "<group>"; };
+		FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +178,7 @@
 		FF4D2E56289048C9000B932B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FF4D2E882890CA1E000B932B /* Detail Article */,
 				FF4D2E7D2890C025000B932B /* Articles */,
 				FF4D2E6F28905BB1000B932B /* Sources */,
 				FF4D2E6028904A97000B932B /* Categories */,
@@ -243,6 +254,18 @@
 				FF4D2E7E2890C030000B932B /* ArticlesModel.swift */,
 			);
 			path = Articles;
+			sourceTree = "<group>";
+		};
+		FF4D2E882890CA1E000B932B /* Detail Article */ = {
+			isa = PBXGroup;
+			children = (
+				FF4D2E892890CA31000B932B /* DetailArticleViewController.swift */,
+				FF4D2E8C2890CA31000B932B /* DetailArticlePresenter.swift */,
+				FF4D2E8A2890CA31000B932B /* DetailArticleRouter.swift */,
+				FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */,
+				FF4D2E8B2890CA31000B932B /* DetailArticleModel.swift */,
+			);
+			path = "Detail Article";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,9 +398,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4D2E912890CB12000B932B /* DetailArticleInteractor.swift in Sources */,
 				FF4D2E5F289049B0000B932B /* UIView+Extensions.swift in Sources */,
 				FF4D2E842890C036000B932B /* ArticlesPresenter.swift in Sources */,
 				FF4D2E7828905C3B000B932B /* SourcesInteractor.swift in Sources */,
+				FF4D2E922890CB15000B932B /* DetailArticleRouter.swift in Sources */,
 				FF4D2E6E28905A8B000B932B /* DefaultTableViewCell.swift in Sources */,
 				FF4D2E7728905C39000B932B /* SourcesRouter.swift in Sources */,
 				FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */,
@@ -387,15 +412,18 @@
 				FF4D2E852890C03A000B932B /* ArticlesRouter.swift in Sources */,
 				FF4D2E7528905C35000B932B /* SourcesViewController.swift in Sources */,
 				FF4D2E7928905C3D000B932B /* SourcesModel.swift in Sources */,
+				FF4D2E902890CB0F000B932B /* DetailArticleModel.swift in Sources */,
 				FF4D2E6428904AFD000B932B /* CategoriesPresenter.swift in Sources */,
 				FF4D2E6828904B1D000B932B /* CategoriesInteractor.swift in Sources */,
 				FF4D2E2B28904705000B932B /* ViewController.swift in Sources */,
+				FF4D2E8F2890CB02000B932B /* DetailArticleViewController.swift in Sources */,
 				FF4D2E832890C034000B932B /* ArticlesViewController.swift in Sources */,
 				FF4D2E2728904705000B932B /* AppDelegate.swift in Sources */,
 				FF4D2E2928904705000B932B /* SceneDelegate.swift in Sources */,
 				FF4D2E6228904AB7000B932B /* CategoriesViewController.swift in Sources */,
 				FF4D2E7628905C37000B932B /* SourcesPresenter.swift in Sources */,
 				FF4D2E6A28904B5E000B932B /* CategoriesModel.swift in Sources */,
+				FF4D2E8E2890CAD0000B932B /* DetailArticlePresenter.swift in Sources */,
 				FF4D2E5A289048FE000B932B /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
