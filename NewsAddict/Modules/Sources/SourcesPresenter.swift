@@ -10,6 +10,7 @@ import UIKit
 
 protocol SourcesViewToPresenterDelegate: AnyObject {
     func getSourcesData()
+    func goToArticlesList(source: String)
     func dismiss()
 }
 
@@ -34,5 +35,10 @@ class SourcesPresenter: SourcesViewToPresenterDelegate, SourcesInteractorToPrese
     
     func dismiss() {
         router?.dismiss(viewController: view as? UIViewController)
+    }
+    
+    func goToArticlesList(source: String) {
+        let articlesVC = ArticlesRouter.createModule(source: source)
+        router?.goToNextViewController(viewController: view as? UIViewController, nextViewController: articlesVC)
     }
 }

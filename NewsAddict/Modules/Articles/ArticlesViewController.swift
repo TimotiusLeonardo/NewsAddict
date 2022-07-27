@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol SourcesViewDelegate: AnyObject {
-    func didGetSourcesData(data: SourcesModel?)
+protocol ArticlesViewDelegate: AnyObject {
+    func didGetArticlesData(data: ArticlesModel?)
 }
 
-class SourcesViewController: UIViewController, SourcesViewDelegate {
+class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     
     // MARK: - View Components
     lazy var sourcesTableView: UITableView = {
@@ -39,13 +39,13 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
     }()
     
     // MARK: - Variables
-    var presenter: SourcesViewToPresenterDelegate?
-    var sources: SourcesModel?
+    var presenter: ArticlesViewToPresenterDelegate?
+    var articles: ArticlesModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        presenter?.getSourcesData()
+        presenter?.getArticlesData()
         // Do any additional setup after loading the view.
     }
     
@@ -78,8 +78,8 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
         view.backgroundColor = .white
     }
     
-    func didGetSourcesData(data: SourcesModel?) {
-        sources = data
+    func didGetArticlesData(data: ArticlesModel?) {
+        articles = data
         sourcesTableView.reloadData()
     }
     
@@ -89,28 +89,25 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
 
 }
 
-extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
+extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let model = sources else {
+        guard let model = articles else {
             return 0
         }
         
-        return model.sources.count
+        return model.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? DefaultTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(text: sources?.sources[indexPath.row].name ?? "No Name")
+        cell.configure(text: articles?.articles[indexPath.row].title ?? "No Title",
+                       subtitle: articles?.articles[indexPath.row].author ?? "No Author")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let sourceId = sources?.sources[indexPath.row].id else {
-            return
-        }
-        presenter?.goToArticlesList(source: sourceId)
     }
 }

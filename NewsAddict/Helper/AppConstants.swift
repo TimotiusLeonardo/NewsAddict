@@ -13,3 +13,4 @@ let BASE_URL = "https://newsapi.org/v2/"
 
 // MARK: - Endpoints
 let CATEGORY_SOURCES_ENDPOINT = "sources"
+let ARTICLES_EVERYTHING_ENDPOINT = "everything"

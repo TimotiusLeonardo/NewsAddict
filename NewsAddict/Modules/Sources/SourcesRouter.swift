@@ -10,6 +10,7 @@ import UIKit
 
 protocol SourcesRouterDelegate: AnyObject {
     func dismiss(viewController: UIViewController?)
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController)
 }
 
 class SourcesRouter: SourcesRouterDelegate {
@@ -31,5 +32,9 @@ class SourcesRouter: SourcesRouterDelegate {
     
     func dismiss(viewController: UIViewController?) {
         viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func goToNextViewController(viewController: UIViewController?, nextViewController: UIViewController) {
+        viewController?.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }

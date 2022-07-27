@@ -10,7 +10,7 @@ import UIKit
 class DefaultTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
         
         textLabel?.font = .systemFont(ofSize: 14, weight: .regular)
@@ -27,8 +27,14 @@ class DefaultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(text: String) {
+    func configure(text: String, subtitle: String? = nil) {
         textLabel?.text = text
+        guard let subtitle = subtitle else {
+            return
+        }
+        textLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        detailTextLabel?.text = subtitle
+        detailTextLabel?.font = .systemFont(ofSize: 12, weight: .light)
     }
 
 }
