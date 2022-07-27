@@ -11,6 +11,7 @@ import UIKit
 protocol SourcesViewToPresenterDelegate: AnyObject {
     func getSourcesData()
     func goToArticlesList(source: String)
+    func sortDataBasedOnKeyword(keywords: String, model: SourcesModel?) -> SourcesModel
     func dismiss()
 }
 
@@ -40,5 +41,19 @@ class SourcesPresenter: SourcesViewToPresenterDelegate, SourcesInteractorToPrese
     func goToArticlesList(source: String) {
         let articlesVC = ArticlesRouter.createModule(source: source)
         router?.goToNextViewController(viewController: view as? UIViewController, nextViewController: articlesVC)
+    }
+    
+    func sortDataBasedOnKeyword(keywords: String, model: SourcesModel?) -> SourcesModel {
+        guard let model = model else {
+            return SourcesModel(status: "fail", sources: [])
+        }
+        
+        var sourcesSortContainer = [SourcesDetail]()
+
+        for data in model.sources where data.id.contains(keywords.lowercased()) {
+            sourcesSortContainer.append(data)
+        }
+        
+        return SourcesModel(status: "ok", sources: sourcesSortContainer)
     }
 }

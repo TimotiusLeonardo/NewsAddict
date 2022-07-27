@@ -38,9 +38,27 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
         return button
     }()
     
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search Articles"
+        searchBar.delegate = self
+        return searchBar
+    }()
+    
+    lazy var emptyTitle: UILabel = {
+        let label = UILabel()
+        label.text = "No Sources Found..."
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.numberOfLines = 0
+        label.alpha = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     // MARK: - Variables
     var presenter: SourcesViewToPresenterDelegate?
     var sources: SourcesModel?
+    var originalSourcesFromAPI: SourcesModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +72,15 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
         view.addSubview(sourcesTableView)
         view.addSubview(pageTitleLabel)
         view.addSubview(backChevronButton)
+        view.addSubview(searchBar)
+        view.addSubview(emptyTitle)
         pageTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                               leading: view.leadingAnchor,
                               bottom: nil,
                               trailing: view.trailingAnchor,
                               padding: .zero,
                               size: .init(width: 0, height: 80))
-        sourcesTableView.anchor(top: pageTitleLabel.bottomAnchor,
+        sourcesTableView.anchor(top: searchBar.bottomAnchor,
                                  leading: view.leadingAnchor,
                                  bottom: view.bottomAnchor,
                                  trailing: view.trailingAnchor,
@@ -74,13 +94,43 @@ class SourcesViewController: UIViewController, SourcesViewDelegate {
                                  padding: .init(top: 0, left: 24, bottom: 0, right: 0),
                                  size: .init(width: 24, height: 24))
         backChevronButton.centerYAnchor.constraint(equalTo: pageTitleLabel.centerYAnchor).isActive = true
+        searchBar.anchor(top: pageTitleLabel.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: nil,
+                         trailing: view.trailingAnchor,
+                         padding: .zero,
+                         size: .init(width: 0, height: 60))
+        emptyTitle.anchor(top: nil,
+                          leading: view.leadingAnchor,
+                          bottom: nil,
+                          trailing: view.trailingAnchor,
+                          padding: .init(top: 0, left: 24,
+                                         bottom: 0, right: 24),
+                          size: .zero)
+        emptyTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         navigationController?.isToolbarHidden = true
         view.backgroundColor = .white
     }
     
     func didGetSourcesData(data: SourcesModel?) {
         sources = data
+        originalSourcesFromAPI = data
         sourcesTableView.reloadData()
+    }
+    
+    func refreshData() {
+        sources = nil
+        sourcesTableView.reloadData()
+    }
+    
+    func toggleEmptyLabel() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.emptyTitle.alpha = self.sources?.sources.isEmpty == true ? 1 : 0
+        },
+                       completion: nil)
     }
     
     @objc func didBackButtonClicked() {
@@ -112,5 +162,25 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         presenter?.goToArticlesList(source: sourceId)
+    }
+}
+
+extension SourcesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        refreshData()
+        sources = presenter?.sortDataBasedOnKeyword(keywords: searchBar.text ?? "", model: originalSourcesFromAPI)
+        sourcesTableView.reloadData()
+        toggleEmptyLabel()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchBar.resignFirstResponder()
+            refreshData()
+            sources = originalSourcesFromAPI
+            sourcesTableView.reloadData()
+            toggleEmptyLabel()
+        }
     }
 }
