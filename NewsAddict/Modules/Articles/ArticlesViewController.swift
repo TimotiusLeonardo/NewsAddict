@@ -118,6 +118,8 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
                           size: .zero)
         emptyTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         view.backgroundColor = .white
     }
     
@@ -165,6 +167,11 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     
     @objc func didBackButtonClicked() {
         presenter?.dismiss()
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
 }
@@ -229,5 +236,14 @@ extension ArticlesViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         refreshData()
         presenter?.getArticlesData(withKeyword: searchBar.text)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchBar.resignFirstResponder()
+            refreshData()
+            presenter?.getArticlesData(withKeyword: searchText)
+            sourcesTableView.reloadData()
+        }
     }
 }
