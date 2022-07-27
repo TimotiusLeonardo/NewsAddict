@@ -38,6 +38,16 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         return button
     }()
     
+    lazy var emptyTitle: UILabel = {
+        let label = UILabel()
+        label.text = "No Articles Found..."
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.numberOfLines = 0
+        label.alpha = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     // MARK: - Variables
     var presenter: ArticlesViewToPresenterDelegate?
     var articles: ArticlesModel?
@@ -54,6 +64,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         view.addSubview(sourcesTableView)
         view.addSubview(pageTitleLabel)
         view.addSubview(backChevronButton)
+        view.addSubview(emptyTitle)
         pageTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                               leading: view.leadingAnchor,
                               bottom: nil,
@@ -74,6 +85,14 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
                                  padding: .init(top: 0, left: 24, bottom: 0, right: 0),
                                  size: .init(width: 24, height: 24))
         backChevronButton.centerYAnchor.constraint(equalTo: pageTitleLabel.centerYAnchor).isActive = true
+        emptyTitle.anchor(top: nil,
+                          leading: view.leadingAnchor,
+                          bottom: nil,
+                          trailing: view.trailingAnchor,
+                          padding: .init(top: 0, left: 24,
+                                         bottom: 0, right: 24),
+                          size: .zero)
+        emptyTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         view.backgroundColor = .white
     }
@@ -81,6 +100,15 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
     func didGetArticlesData(data: ArticlesModel?) {
         articles = data
         sourcesTableView.reloadData()
+        if articles?.articles.isEmpty == true {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           options: .curveEaseInOut,
+                           animations: {
+                self.emptyTitle.alpha = 1
+            },
+                           completion: nil)
+        }
     }
     
     @objc func didBackButtonClicked() {
