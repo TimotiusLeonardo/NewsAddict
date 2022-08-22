@@ -14,22 +14,25 @@ protocol CategoriesViewDelegate: AnyObject {
 class CategoriesViewController: UIViewController, CategoriesViewDelegate {
     
     // MARK: - View Components
-    lazy var categoryTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        return tableView
-    }()
+    @IBOutlet weak var categoryTableView: UITableView!
+    @IBOutlet weak var pageTitleLabel: UILabel!
     
-    lazy var pageTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Categories"
-        label.textColor = .black
-        label.backgroundColor = .white
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 24, weight: .heavy)
-        return label
-    }()
+//    lazy var categoryTableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.dataSource = self
+//        tableView.delegate = self
+//        return tableView
+//    }()
+//
+//    lazy var pageTitleLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "Categories"
+//        label.textColor = .black
+//        label.backgroundColor = .white
+//        label.textAlignment = .center
+//        label.font = .systemFont(ofSize: 24, weight: .heavy)
+//        return label
+//    }()
     
     // MARK: - Variables
     var presenter: CategoriesViewToPresenterDelegate?
@@ -37,7 +40,10 @@ class CategoriesViewController: UIViewController, CategoriesViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+//        setupUI()
+        categoryTableView.dataSource = self
+        categoryTableView.delegate = self
+        categoryTableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: "Cell")
         presenter?.getCategoryData()
         // Do any additional setup after loading the view.
     }
@@ -64,6 +70,10 @@ class CategoriesViewController: UIViewController, CategoriesViewDelegate {
                                  padding: .zero,
                                  size: .zero)
         categoryTableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        pageTitleLabel.addGestureRecognizer(tap)
         
         view.backgroundColor = .white
     }

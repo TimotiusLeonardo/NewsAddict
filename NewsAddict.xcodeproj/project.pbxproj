@@ -40,6 +40,9 @@
 		FF4D2E912890CB12000B932B /* DetailArticleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */; };
 		FF4D2E922890CB15000B932B /* DetailArticleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E8A2890CA31000B932B /* DetailArticleRouter.swift */; };
 		FF4D2E942890DE91000B932B /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E932890DE91000B932B /* LoadingTableViewCell.swift */; };
+		FF6787CC28B36CC7007DBC80 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6787CB28B36CC7007DBC80 /* UIImageView + Extensions.swift */; };
+		FF6787CE28B36FA0007DBC80 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6787CD28B36FA0007DBC80 /* UIImage + Extensions.swift */; };
+		FF6787D028B37135007DBC80 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6787CF28B37135007DBC80 /* CategoriesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		FF4D2E8C2890CA31000B932B /* DetailArticlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticlePresenter.swift; sourceTree = "<group>"; };
 		FF4D2E8D2890CA31000B932B /* DetailArticleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleInteractor.swift; sourceTree = "<group>"; };
 		FF4D2E932890DE91000B932B /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		FF6787CB28B36CC7007DBC80 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
+		FF6787CD28B36FA0007DBC80 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
+		FF6787CF28B37135007DBC80 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,8 @@
 			children = (
 				FF4D2E5C28904991000B932B /* URLSession+Extensions.swift */,
 				FF4D2E5E289049B0000B932B /* UIView+Extensions.swift */,
+				FF6787CB28B36CC7007DBC80 /* UIImageView + Extensions.swift */,
+				FF6787CD28B36FA0007DBC80 /* UIImage + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +230,7 @@
 				FF4D2E6528904B0C000B932B /* CategoriesRouter.swift */,
 				FF4D2E6728904B1D000B932B /* CategoriesInteractor.swift */,
 				FF4D2E6928904B5E000B932B /* CategoriesModel.swift */,
+				FF6787CF28B37135007DBC80 /* CategoriesViewController.xib */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 			files = (
 				FF4D2E3328904707000B932B /* LaunchScreen.storyboard in Resources */,
 				FF4D2E3028904707000B932B /* Assets.xcassets in Resources */,
+				FF6787D028B37135007DBC80 /* CategoriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +417,7 @@
 				FF4D2E7828905C3B000B932B /* SourcesInteractor.swift in Sources */,
 				FF4D2E922890CB15000B932B /* DetailArticleRouter.swift in Sources */,
 				FF4D2E6E28905A8B000B932B /* DefaultTableViewCell.swift in Sources */,
+				FF6787CC28B36CC7007DBC80 /* UIImageView + Extensions.swift in Sources */,
 				FF4D2E7728905C39000B932B /* SourcesRouter.swift in Sources */,
 				FF4D2E5D28904991000B932B /* URLSession+Extensions.swift in Sources */,
 				FF4D2E862890C03D000B932B /* ArticlesInteractor.swift in Sources */,
@@ -421,6 +432,7 @@
 				FF4D2E6828904B1D000B932B /* CategoriesInteractor.swift in Sources */,
 				FF4D2E2B28904705000B932B /* ViewController.swift in Sources */,
 				FF4D2E8F2890CB02000B932B /* DetailArticleViewController.swift in Sources */,
+				FF6787CE28B36FA0007DBC80 /* UIImage + Extensions.swift in Sources */,
 				FF4D2E832890C034000B932B /* ArticlesViewController.swift in Sources */,
 				FF4D2E2728904705000B932B /* AppDelegate.swift in Sources */,
 				FF4D2E2928904705000B932B /* SceneDelegate.swift in Sources */,

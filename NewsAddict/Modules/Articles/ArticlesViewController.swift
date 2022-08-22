@@ -119,7 +119,7 @@ class ArticlesViewController: UIViewController, ArticlesViewDelegate {
         emptyTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        pageTitleLabel.addGestureRecognizer(tap)
         view.backgroundColor = .white
     }
     
@@ -215,7 +215,8 @@ extension ArticlesViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.configure(text: articles?.articles[indexPath.row].title ?? "No Title",
-                           subtitle: articles?.articles[indexPath.row].author ?? "No Author")
+                           subtitle: articles?.articles[indexPath.row].author ?? "No Author",
+                           imageUrl: articles?.articles[indexPath.row].urlToImage)
             return cell
         }
     }

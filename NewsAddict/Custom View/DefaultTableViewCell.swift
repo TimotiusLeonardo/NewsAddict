@@ -27,8 +27,15 @@ class DefaultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(text: String, subtitle: String? = nil) {
+    func configure(text: String, subtitle: String? = nil, imageUrl: String? = nil) {
         textLabel?.text = text
+        textLabel?.numberOfLines = 0
+        if let _imageView = imageView,
+            let _imageUrl = imageUrl,
+           let url = URL(string: _imageUrl) {
+            _imageView.contentMode = .scaleAspectFill
+            _imageView.downloadImage(from: url)
+        }
         guard let subtitle = subtitle else {
             return
         }
